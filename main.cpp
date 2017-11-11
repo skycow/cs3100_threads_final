@@ -1,3 +1,7 @@
+//Skyler Cowley
+//CS 3100
+//Assignment 5
+
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -97,6 +101,8 @@ void calcPi(SafeQueue &inQueue, SafeMap &resMap)
 	int nextVal;
 	while (inQueue.getNext(nextVal))
 	{
+                std::cout << ".";
+                std::cout.flush();
 		//compute pi
 		int calc = computePiDigit(nextVal);
 		resMap.safeInsert(nextVal, calc);
@@ -118,10 +124,12 @@ int main()
 
 	for (auto& th : threads) th.join();
 
+        std::cout << "\n\n3.";
 	for (int i = 1; i <= 1000; i++)
 	{
 		std::cout << digitMap.getMap().find(i)->second;
 	}
+        std::cout << std::endl;
 
 	return 0;
 }
